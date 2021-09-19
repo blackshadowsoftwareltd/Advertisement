@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:googlemobileadz/constant.dart';
+
+import 'native_ad_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,10 +37,28 @@ class _HomeState extends State<Home> {
             width: double.infinity,
             height: double.infinity,
             alignment: Alignment.bottomCenter,
-            child: Container(
-                height: bannerAdz.size.height.toDouble(),
-                width: bannerAdz.size.width.toDouble(),
-                child: AdWidget(ad: bannerAdz))));
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                    padding: EdgeInsets.all(20),
+                    child: TextButton(
+                        child: Text(
+                          'Native ad',
+                          style: TextStyle(fontSize: 35),
+                        ),
+                        onPressed: () => Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                                builder: (context) => NativeAdScreen())))),
+
+                ///
+                Container(
+                    height: bannerAdz.size.height.toDouble(),
+                    width: bannerAdz.size.width.toDouble(),
+                    child: AdWidget(ad: bannerAdz)),
+              ],
+            )));
   }
 
   @override
